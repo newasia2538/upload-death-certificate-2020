@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <div class="row mb-3">
-          <input type="file" id="imageLoader" class="my-2" :disabled="!isSelectedDate" @change="updateCanvasImage"/>
-          <input type="date" id="dateSelector" class="my-2" @input="onSelectDate($event)" />
-          <div style="background-color:black; width:97%; heigth:50%;" class="bg-canvas">
+          <input type="file" id="imageLoader" class="m-3" :disabled="!isSelectedDate" @change="updateCanvasImage"/>
+          <input type="date" id="dateSelector" class="m-3" @input="onSelectDate($event)" />
+          <div style="background-color:black; width:97%;" class="bg-canvas d-flex align-items-center flex-column">
             <canvas id="imageCanvas" ref="imageCanvas" style="background-color:white;" ></canvas>
-            <div><button type="button" class="btn btn-light btn-lg" @click="goToResultImagePage">Next</button></div>
+            <div class="mt-auto p-2"><button type="button" class="btn btn-light btn-lg" @click="goToResultImagePage">Next</button></div>
         </div>
         </div>
     </div>
@@ -53,30 +53,30 @@ export default {
         drawCanvasImage(img) {
             var canvas = this.$refs.imageCanvas;
             if(window.innerWidth < 768){
-              canvas.width = window.width;
-              canvas.height = window.height;
+              canvas.width = window.innerWidth*0.9;
+              canvas.height = window.innerHeight*0.6;
             } else{
-              canvas.width = 550;
-              canvas.height = 750;
+              canvas.width = window.innerWidth *0.5;
+              canvas.height = window.innerHeight *0.7;
             }
             
             var ctx = canvas.getContext('2d');
             ctx.fillStyle = 'white';
             ctx.fillRect(0,0,canvas.width,canvas.height);
 
-            ctx.font = "2rem Thasadith";
+            ctx.font = "1.5rem Thasadith";
             ctx.textAlign = "center";
             ctx.fillStyle = 'black';
             if(window.innerWidth < 768){
-              ctx.fillText(this.getBirthDateString(this.birthDate), canvas.width*0.2, canvas.height/1.65);
-              ctx.fillText(this.getDeathDateString(), canvas.width*0.2, canvas.height/1.5);
+              ctx.fillText(this.getBirthDateString(this.birthDate), canvas.width*0.5, canvas.height/1.6);
+              ctx.fillText(this.getDeathDateString(), canvas.width*0.5, canvas.height/1.4);
             
-              ctx.drawImage(img, canvas.width/2, canvas.height/2, canvas.width, canvas.width/2);
+              ctx.drawImage(img, canvas.width*0.15, canvas.height*0.04, canvas.width*0.7, canvas.width*0.7);
             } else{
-              ctx.fillText(this.getBirthDateString(this.birthDate), canvas.width/2, canvas.height/1.6);
-              ctx.fillText(this.getDeathDateString(), canvas.width/2, canvas.height/1.4);
+              ctx.fillText(this.getBirthDateString(this.birthDate), canvas.width/2, canvas.height/1.3);
+              ctx.fillText(this.getDeathDateString(), canvas.width/2, canvas.height/1.2);
             
-              ctx.drawImage(img, canvas.width*0.15, canvas.height*0.05, canvas.width*0.7, canvas.width*0.7);
+              ctx.drawImage(img, canvas.width*0.25, canvas.height*0.04, canvas.width*0.5, canvas.width*0.5);
             }
             
             
@@ -123,10 +123,11 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;400&family=Thasadith:ital@1&display=swap');
 
 .bg-canvas {
-  height: 100%;
+  height: 100vh;
   width: 60%;
   margin: auto;
-  padding-top: 20px;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
 
 h3 {

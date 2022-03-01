@@ -22,5 +22,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   background-color:#f2e9e4;
+  min-height: 100vh;
 }
 </style>
